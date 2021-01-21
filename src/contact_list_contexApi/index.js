@@ -5,7 +5,7 @@ import { Context } from '../store/appContex'
 const Index = () => {
 
     const { store, actions } = useContext(Context)
-
+ 
     return (
         <>
             <Link to='/'>

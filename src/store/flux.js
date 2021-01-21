@@ -32,7 +32,8 @@ const getState = ({ getStore, setStore, getActions }) => {
                     direction:store.direction
                 }
                 const contact2=store.contact.concat(newContact)
-                setStore({contact:contact2})
+                setStore({contact:contact2,nombre:'',mail:'', phone:'',direction:''})
+
             }
 
         }
