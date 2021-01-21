@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.w-50{
+  width: 50%;
+}
+
+.contact-pic{
+ background-image: url(./images/img_avatar1.png);
+}
+
+.bg-red{
+  background-color: red;
+}
+
+.m-top{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
