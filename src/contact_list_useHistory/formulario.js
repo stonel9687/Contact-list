@@ -1,42 +1,9 @@
 import React, { useState } from 'react'
+import { Link } from "react-router-dom"
 
-const Formulario = () => {
+const Formulario = (props) => {
 
-    const [nombre, setNombre] = useState('')
-    const [mail, setMail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [direction, setDirection] = useState('')
-    const [lista, setLista] = useState([])
-
-    const handleChangeName = (e) => {
-        setNombre(e.target.value)
-    }
-
-    const handleChangeMail = (e) => {
-        setMail(e.target.value)
-    }
-    const handleChangePhone = (e) => {
-        setPhone(e.target.value)
-    }
-    const handleChangeDirection = (e) => {
-        setDirection(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventdefault()
-        const id = new Date().getTime()
-        const newContact = {
-            id: id,
-            name: nombre,
-            email: mail,
-            phone: phone,
-            direction: direction
-        }
-        const contact = lista.concat(newContact)
-        setLista(contact)
-
-    }
-    console.log(lista)
+    const { nombre, phone, direction, mail, handleChangeName, handleChangeMail, handleChangePhone, handleChangeDirection, handleSubmit } = props
 
     return (
         <>
@@ -52,11 +19,11 @@ const Formulario = () => {
                                     <label for="inputPassword" className="col-lg-2 control-label">Nombre Completo</label>
                                     <input required type="text" className="form-control " placeholder="Nombre" aria-label="Recipient's username" onChange={handleChangeName} value={nombre} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Email</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangeMail} value={mail} />
+                                    <input required type="text" className="form-control " placeholder="Email" aria-label="Recipient's username" onChange={handleChangeMail} value={mail} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Telefono</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangePhone} value={phone} />
+                                    <input required type="text" className="form-control " placeholder="Telefono" aria-label="Recipient's username" onChange={handleChangePhone} value={phone} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Direccion</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangeDirection} value={direction} />
+                                    <input required type="text" className="form-control " placeholder="Direccion" aria-label="Recipient's username" onChange={handleChangeDirection} value={direction} />
                                     <div className='m-top'>
                                         <button type='submit' className="btn btn-primary btn-lg btn-block">Agregar</button>
                                     </div>

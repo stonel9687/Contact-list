@@ -12,14 +12,17 @@ const Layout =()=>{
             <Route exact path='/'>
                 <Home />
             </Route>
-            <Route exact path='/contact-list-simple'>
+            <Route  path='/contact-list-simple'>
                 < ContactSimple/>
             </Route>
-            <Route exact path='/contact-list-contex'>
+            <Route path='/contact-list-contex'>
                 < Index/>
             </Route>
-            <Route exact path='/contact-list-usehistory'>
-                < Index2/>
+            <Route path='/contact-list-usehistory'>
+                <Index2 />
+            </Route>
+            <Route path='/contact-list-usehistory'>
+                <Index2 />
             </Route>
         </Switch>
     )

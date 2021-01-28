@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Form from './contact-form'
 import List from './contact-list'
 
 const ContactSimple = () => {
 
+    const history = useHistory()
+
     const [nombre, setNombre] = useState('')
     const [mail, setMail] = useState('')
     const [phone, setPhone] = useState('')
     const [direction, setDirection] = useState('')
-    const [lista, setLista] = useState([])
+    const [contactList, setContactList] = useState([])
+    const [edit, setEdit] = useState(false)
+    const [currentContact, setCurrentContact] = useState({})
 
     const handleChangeName = (e) => {
         setNombre(e.target.value)
@@ -18,41 +22,76 @@ const ContactSimple = () => {
     const handleChangeMail = (e) => {
         setMail(e.target.value)
     }
+
     const handleChangePhone = (e) => {
         setPhone(e.target.value)
     }
+
     const handleChangeDirection = (e) => {
         setDirection(e.target.value)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const id = new Date().getTime()
-        const newContact = {
-            id: id,
-            name: nombre,
-            email: mail,
-            phone: phone,
-            direction: direction
+        if (edit) {
+            const newContactlist = contactList.map((item) => {
+                if (item.id === currentContact.id) {
+                    const newContact = {
+                        id: currentContact.id,
+                        name: nombre,
+                        mail: mail,
+                        phone: phone,
+                        direction: direction
+                    }
+                    return newContact
+                } else {
+                    return item
+                }
+            })
+            setContactList(newContactlist)
+            setEdit(false)
+            setMail('')
+            setNombre('')
+            setPhone('')
+            setDirection('')
+            setCurrentContact({})
+        } else {
+            const id = new Date().getTime()
+            const newContact = {
+                id: id,
+                name: nombre,
+                mail: mail,
+                phone: phone,
+                direction: direction
+            }
+
+            const addContact = contactList.concat(newContact)
+            setContactList(addContact)
+            setMail('')
+            setNombre('')
+            setPhone('')
+            setDirection('')
+
         }
-        const contact = lista.concat(newContact)
-        setLista(contact)
-        setNombre('')
-        setPhone('')
-        setMail('')
-        setDirection('')
-        
-    }
+        history.push('/contact-list-simple/contact-list')
 
+    }
     const deleteContact = (item) => {
-        const eraseContact = lista.filter((name)=>{
-            return name !==item
+        const eraseContact = contactList.filter((tarea) => {
+            return tarea.id !== item.id
         })
-        setLista(eraseContact)
+        setContactList(eraseContact)
     }
 
-
-
+    const setEditContact = (task) => {
+        setMail(task.mail)
+        setNombre(task.name)
+        setPhone(task.phone)
+        setDirection(task.direction)
+        setEdit(true)
+        setCurrentContact(task)
+        history.push('/contact-list-simple/contact-form')
+    }
     return (
         <>
             <section className='d-flex container'>
@@ -79,8 +118,9 @@ const ContactSimple = () => {
 
                                 <hr></hr>
                                 <List
-                                    lista={lista}
-                                    deleteTask={deleteContact} />
+                                    contactList={contactList}
+                                    deleteContact={deleteContact}
+                                    setEditContact={setEditContact} />
                             </div>
                         </div>
                     </div>

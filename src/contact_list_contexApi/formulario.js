@@ -1,43 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { Context } from '../store/appContex'
 
 const Formulario = () => {
-
-    const [nombre, setNombre] = useState('')
-    const [mail, setMail] = useState('')
-    const [phone, setPhone] = useState('')
-    const [direction, setDirection] = useState('')
-    const [lista, setLista] = useState([])
-
-    const handleChangeName = (e) => {
-        setNombre(e.target.value)
-    }
-
-    const handleChangeMail = (e) => {
-        setMail(e.target.value)
-    }
-    const handleChangePhone = (e) => {
-        setPhone(e.target.value)
-    }
-    const handleChangeDirection = (e) => {
-        setDirection(e.target.value)
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const id = new Date().getTime()
-        const newContact = {
-            id: id,
-            name: nombre,
-            email: mail,
-            phone: phone,
-            direction: direction
-        }
-        const contact = lista.concat(newContact)
-        setLista(contact)
-
-    }
-    console.log(lista)
-
+    const { store, actions } = useContext(Context)
     return (
         <>
             <section className='d-flex container'>
@@ -48,20 +13,22 @@ const Formulario = () => {
                                 <div className='text-align-center'>
                                     <h4>Add New Contact</h4>
                                 </div>
-                                <form className="form-horizontal" onSubmit={handleSubmit}>
+                                <form className="form-horizontal" onSubmit={actions.handleSubmit}>
                                     <label for="inputPassword" className="col-lg-2 control-label">Nombre Completo</label>
-                                    <input required type="text" className="form-control " placeholder="Nombre" aria-label="Recipient's username" onChange={handleChangeName} value={nombre} />
+                                    <input required type="text" className="form-control " placeholder="Nombre" aria-label="Recipient's username" onChange={actions.handleChangeName} value={store.nombre} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Email</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangeMail} value={mail} />
+                                    <input required type="text" className="form-control " placeholder="Mail" aria-label="Recipient's username" onChange={actions.handleChangeMail} value={store.mail} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Telefono</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangePhone} value={phone} />
+                                    <input required type="text" className="form-control " placeholder="Telefono" aria-label="Recipient's username" onChange={actions.handleChangePhone} value={store.phone} />
                                     <label for="inputPassword" className="col-lg-2 control-label">Direccion</label>
-                                    <input required type="text" className="form-control " placeholder="Tarea" aria-label="Recipient's username" onChange={handleChangeDirection} value={direction} />
+                                    <input required type="text" className="form-control " placeholder="Direccion" aria-label="Recipient's username" onChange={actions.handleChangeDirection} value={store.direction} />
                                     <div className='m-top'>
                                         <button type='submit' className="btn btn-primary btn-lg btn-block">Agregar</button>
                                     </div>
                                 </form>
                             </div>
+                            <hr></hr>
+
                         </div>
                     </div>
                 </div>
