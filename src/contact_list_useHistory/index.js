@@ -5,8 +5,8 @@ import Formulario from './formulario'
 import Lista from './listas'
 
 const Index2 = () => {
-    
-   const history=useHistory()
+
+    const history = useHistory()
 
     const [nombre, setNombre] = useState('')
     const [mail, setMail] = useState('')

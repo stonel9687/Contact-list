@@ -28,3 +28,15 @@ code {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.div-login {
+  width: 20vw;
+  height: 50vh;
+}
+
+.div-list {
+  width: 50vw;
+  border: 1px solid rgb(129, 129, 129);
+  border-radius: 5px;
+  padding: 5px 5px;
+}

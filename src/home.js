@@ -24,6 +24,12 @@ const Home = () => {
             Contact List useHistory
               </button>
         </Link>
+
+        <Link to='/contact_list_fetch/login' className='w-100'>
+          <button class="btn btn-secondary my-2 w-100">
+            Contact List Fetch
+              </button>
+        </Link>
         
       </div>
     </div>
