@@ -118,7 +118,7 @@ const IndexFetch = () => {
                 phone: phone,
                 address: direction
             }
-            fetch(`https://crud-placeholder.herokuapp.com/api/v1/put_contactList/${contactToEdit._id}`, {
+            fetch(`http://localhost:5000/put-contactlist/${contactToEdit._id}`, {
                 method: "PUT",
                 body: JSON.stringify(editCont),
                 headers: {
@@ -143,7 +143,7 @@ const IndexFetch = () => {
                 phone: phone,
                 address: direction
             }
-            fetch('https://crud-placeholder.herokuapp.com/api/v1/post_contactList/', {
+            fetch('http://localhost:5000/post-contactlist', {
                 method: "POST",
                 body: JSON.stringify(newContact),
                 headers: {
@@ -168,20 +168,22 @@ const IndexFetch = () => {
     }
 
     const showContact = () => {
-        fetch('https://crud-placeholder.herokuapp.com/api/v1/get_all_contactList/', {
+        fetch('http://localhost:5000/get-contactlist', {
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(resp => { return resp.json() })
             .then(data => {
-                setContactList(data.contacts)
+                console.log(data)
+                setContactList(data)
+
             })
             .catch(error => console.log('Error:', error));
     }
 
     const deleteContact = (item) => {
-        fetch(`https://crud-placeholder.herokuapp.com/api/v1/delete_one_contactList/${item._id}`, {
+        fetch(`http://localhost:5000/delete-contactlist/${item._id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
